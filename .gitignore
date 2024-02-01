@@ -1,0 +1,8 @@
+build
+debug
+*.exe
+*.dll
+*.zip
+.vscode
+.vs
+.idea
