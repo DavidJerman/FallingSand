@@ -52,6 +52,9 @@ bool Game::OnUserUpdate(float fElapsedTime)
         }
     }
 
+    // --> Win condition <--
+    checkWin();
+
     return true;
 }
 
@@ -153,7 +156,48 @@ void Game::processSand()
 
 bool Game::checkWin()
 {
-    // TODO: Implement
+    for (uint32_t y = 0; y < SCREEN_HEIGHT; ++y)
+    {
+        bool win = true;
+        const olc::Pixel &color = sand[0][y].color;
+
+        for (uint32_t x = 1; x < SCREEN_WIDTH; ++x)
+        {
+            if (!sand[x][y].exists)
+            {
+                win = false;
+                break;
+            }
+
+            if (sand[x][y].color != color)
+            {
+                win = false;
+                break;
+            }
+        }
+
+        if (win)
+        {
+            for (uint32_t x = 0; x < SCREEN_WIDTH; ++x)
+            {
+                sand[x][y].exists = false;
+            }
+        }
+    }
+
+    return false;
+}
+
+bool Game::checkOverlap(std::vector<uint32_t> &previousY, std::vector<uint32_t> &currentY)
+{
+    for (uint32_t i = 0; i < previousY.size(); ++i)
+    {
+        for (uint32_t j = 0; j < currentY.size(); ++j)
+        {
+            if (previousY[i] == currentY[j])
+                return true;
+        }
+    }
 
     return false;
 }

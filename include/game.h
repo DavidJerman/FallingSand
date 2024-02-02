@@ -27,6 +27,7 @@ private:
 
     // Win condition
     bool checkWin();
+    bool checkOverlap(std::vector<uint32_t> &previousY, std::vector<uint32_t> &currentY);
 
 // Variables
     std::array<std::array<SandGrain, SCREEN_HEIGHT>, SCREEN_WIDTH> sand;
