@@ -19,20 +19,42 @@ private:
     // Init
     void initColors();
 
-    // Functions
+    // Main functions
+    void render();
+    void input();
+    void logic();
+
+    // ---> Logic <---
     bool createSandGrain(uint32_t x, uint32_t y, olc::Pixel color);
     bool createSandBlob(uint32_t x, uint32_t y, uint32_t size, olc::Pixel color);
     void createSandBlob(uint32_t x, uint32_t y, uint32_t size);
+    void countNumberOfGrains();
     void processSand();
+    void clearSand();
+    void deleteSand(uint32_t x, uint32_t y);
+    void checkWinCondition();
+
+    // ---> Input <---
+    std::pair<uint32_t, uint32_t> getMousePosition();
+
+    // ---> Rendering <---
+    void renderSand();
+    void renderNextColorIndicator();
+    void renderScore();
+    void renderWinScreen();
 
     // Win condition
-    bool checkWin();
-    bool checkOverlap(std::vector<uint32_t> &previousY, std::vector<uint32_t> &currentY);
+    void checkSandConnection();
+    void sideSearch(uint32_t x, uint32_t y, const olc::Pixel &color, bool &foundConnection);
+    void clearVisited(bool connectionFound);
 
-// Variables
+    // Variables
     std::array<std::array<SandGrain, SCREEN_HEIGHT>, SCREEN_WIDTH> sand;
     std::vector<olc::Pixel> colors;
 
-    bool mouseHeld {false};
-    olc::Pixel nextColor;
+    bool mouseHeld{false};
+    uint32_t numberOfGrains{0};
+    uint32_t numberOfConnections{0};
+    olc::Pixel nextColor{olc::BLANK};
+    bool gameLost{false};
 };

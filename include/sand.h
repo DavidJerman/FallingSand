@@ -16,4 +16,6 @@ struct SandGrain
 
     olc::Pixel color;
     bool exists {false};
+
+    bool visited {false};
 };

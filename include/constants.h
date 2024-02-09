@@ -11,7 +11,7 @@ const uint32_t SCREEN_WIDTH = 160;
 const uint32_t SCREEN_HEIGHT = 200;
 const uint32_t SCALE = 4;
 
-const uint32_t NUM_OF_COLORS = 1;
+const uint32_t NUM_OF_COLORS = 6;
 const uint32_t MAX_GRAINS = SCREEN_WIDTH * SCREEN_HEIGHT * 0.64;
 
 const olc::Pixel COLORS[12] = {
