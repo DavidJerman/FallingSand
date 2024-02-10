@@ -145,6 +145,12 @@ bool Game::createSandGrain(uint32_t x, uint32_t y, olc::Pixel color)
 
 bool Game::createSandBlob(uint32_t x, uint32_t y, uint32_t size, olc::Pixel color)
 {
+    if (x < (size / 2 + 1) ||
+        x > (SCREEN_WIDTH - size / 2 - 2) || 
+        y < (size / 2 + 1) || 
+        y > (SCREEN_HEIGHT - size / 2 - 2))
+        return false;
+
     bool grainCreated = false;
 
     for (uint32_t i = x - size / 2; i < x + size / 2; ++i)
@@ -247,6 +253,7 @@ void Game::clearSand()
     }
 
     numberOfGrains = 0;
+    numberOfConnections = 0;
 }
 
 void Game::deleteSand(uint32_t x, uint32_t y)
